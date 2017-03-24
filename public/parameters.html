@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+	<title>Parameters</title>
+	<meta name="viewport" content="width=400" />
+	
+	<script src="socket.io/socket.io.js"></script>
+	<link rel="stylesheet" href="slider.css">
+	<link rel="stylesheet" href="yle.css">
+	<style>
+	body {
+		color: white;
+	}
+	</style>
+  </head>
+  <body>
+  	<div id="header">
+    	<div id='infos'>Parameters settings</div>
+    	<div id="menu">
+    		<input type="image" id="save" value="save" src="save.png" onclick="saveParameters(this.value)">
+    		<a href="/"><img id="home" src="home.png"></a>
+    	</div>
+    </div>
+	<div id="blocAllParam">
+
+<!-- param01: T° min eau -->
+		<div class="blocParamImg">	
+			<img src="thermometer.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>T° eau min: </span><span id="outputText1">xx</span><span>°C</span>
+		</div>
+		<div class="blocSlider">
+			<input type="range" id="inputSlider1" min="20" max="40" value="25" step="0.1" oninput="showParam(1,this.value)" />
+		</div>
+
+<!-- param02: T° max eau -->	
+		<div class="blocParamImg">	
+			<img src="thermometer.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>T° eau max: </span><span id="outputText2">xx</span><span>°C</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="range" id="inputSlider2" min="20" max="40" value="25" step="0.1" oninput="showParam(2,this.value)" />
+		</div>
+
+<!-- param03: T° min air -->
+		<div class="blocParamImg">	
+			<img src="thermometer.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>T° air min: </span><span id="outputText3">xx</span><span>°C</span>
+		</div>
+		<div class="blocSlider">
+			<input type="range" id="inputSlider3" min="15" max="50" value="25" step="0.1" oninput="showParam(3,this.value)" />
+		</div>
+
+<!-- param04: T° max air -->	
+		<div class="blocParamImg">	
+			<img src="thermometer.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>T° air max: </span><span id="outputText4">xx</span><span>°C</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="range" id="inputSlider4" min="15" max="50" value="25" step="0.1" oninput="showParam(4,this.value)" />
+		</div>
+
+<!-- param05: Sonde T° eau bac -->	
+		<div class="blocParamImg">	
+			<img src="sonde.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>Sonde T° eau bac: </span><span id="outputText5">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider5" oninput="showParam(5,this.value)" />
+		</div>
+
+<!-- param06: Sonde T° eau decant -->	
+		<div class="blocParamImg">	
+			<img src="sonde.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>Sonde T° eau decant: </span><span id="outputText6">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider6" oninput="showParam(6,this.value)" />
+		</div>
+
+<!-- param07: Sonde T° air bac -->	
+		<div class="blocParamImg">	
+			<img src="sonde.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>Sonde T° air bac: </span><span id="outputText7">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider7" oninput="showParam(7,this.value)" />
+		</div>
+
+<!-- param08: Sonde T° air decant -->	
+		<div class="blocParamImg">	
+			<img src="sonde.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>Sonde T° air decant: </span><span id="outputText8">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider8" oninput="showParam(8,this.value)" />
+		</div>
+
+<!-- param18: GPIO Decant Min -->	
+		<div class="blocParamImg">	
+			<img src="gpio.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>GPIO decant Min: </span><span id="outputText18">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider18" oninput="showParam(18,this.value)" />
+		</div>
+
+<!-- param19: GPIO Decant Max -->	
+		<div class="blocParamImg">	
+			<img src="gpio.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>GPIO decant Max: </span><span id="outputText19">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider19" oninput="showParam(19,this.value)" />
+		</div>
+
+<!-- param20: GPIO Osmolation -->	
+		<div class="blocParamImg">	
+			<img src="gpio.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>GPIO osmolation: </span><span id="outputText20">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider20" oninput="showParam(20,this.value)" />
+		</div>
+
+<!-- param21: GPIO Osmosee -->	
+		<div class="blocParamImg">	
+			<img src="gpio.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>GPIO osmosee: </span><span id="outputText21">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider21" oninput="showParam(21,this.value)" />
+		</div>
+
+<!-- param09: email -->	
+		<div class="blocParamImg">	
+			<img src="mail.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>Email dest: </span><span id="outputText9">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider9" oninput="showParam(9,this.value)" />
+		</div>
+
+<!-- param10: smtp server -->	
+		<div class="blocParamImg">	
+			<img src="mail.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>SMTP server: </span><span id="outputText10">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider10" oninput="showParam(10,this.value)" />
+		</div>
+
+<!-- param11: Send period -->	
+		<div class="blocParamImg">	
+			<img src="mail.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>Send period: </span><span id="outputText11">xx</span><span> min</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="range" id="inputSlider11" min="1" max="480" value="5" step="1" oninput="showParam(11,this.value)" />
+		</div>
+
+<!-- param12: smtp user -->	
+		<div class="blocParamImg">	
+			<img src="mail.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>SMTP user: </span><span id="outputText12">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider12" oninput="showParam(12,this.value)" />
+		</div>
+
+<!-- param13: smtp password -->	
+		<div class="blocParamImg">	
+			<img src="mail.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>SMTP password: </span><span id="outputText13">xx</span>
+		</div>				
+		<div class="blocSlider">
+			<input type="text" id="inputSlider13" oninput="showParam(13,this.value)" />
+		</div>
+
+<!-- param14: check period in seconds -->
+		<div class="blocParamImg">	
+			<img src="check.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>Check: </span><span id="outputText14">xx</span><span> sec </span>
+		</div>
+		<div class="blocSlider">
+			<input type="range" id="inputSlider14" min="1" max="600" value="30" step="1" oninput="showParam(14,this.value)" />
+		</div>
+		
+<!-- param15: http port -->
+		<div class="blocParamImg">	
+			<img src="port.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>HTTP port: </span><span id="outputText15">xx</span>
+		</div>
+		<div class="blocSlider">
+			<input type="range" id="inputSlider15" min="8980" max="8999" value="8989" step="1" oninput="showParam(15,this.value)" />
+		</div>
+
+<!-- param16: debug mode -->
+		<div class="blocParamImg">	
+			<img src="debug.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>Debug: </span><span id="outputText16">xx</span>
+		</div>
+		<div class="blocSlider">
+			<input type="range" id="inputSlider16" min="0" max="1" value="1" step="1" oninput="showParam(16,this.value)" />
+		</div>
+
+<!-- param17: log mode -->
+		<div class="blocParamImg">	
+			<img src="log.png">
+		</div>
+		<div class="blocParamTxt">
+			<span>Log: </span><span id="outputText17">xx</span>
+		</div>
+		<div class="blocSlider">
+			<input type="range" id="inputSlider17" min="0" max="1" value="1" step="1" oninput="showParam(17,this.value)" />
+		</div>
+
+	</div>
+	<script type="text/javascript">		
+		var socket = io.connect();
+
+		function saveParameters( newValue) {
+			socket.emit('save', { value: newValue });
+		}
+
+		function showParam(num, newValue) {
+			socket.emit('param'+num, { value: newValue });
+		}
+
+		function socketSlider(num) {
+			socket.on('param'+num, function (data) {
+				document.getElementById( "inputSlider" + num ).value = data.value;
+				document.getElementById( "outputText" + num ).innerHTML = data.value;
+			});
+		}
+
+		//build paarmeter
+		for (var i=1; i <= 21; i++) {
+			socketSlider(i);
+		}
+	</script>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+.blocRampe {
+	/*padding-bottom: 4%;*/
+}
+.blocNum {
+	float: left;
+    font-size: 1.5em;
+}
+.blocTemp, .blocRelay, .blocAtten {
+	float: left;
+    width: 180px;
+    /*height: 45px;*/   
+}
+.blocTemp span, .blocRelay span, .blocAtten span, .blocCanal span {
+	display: block;
+    text-align: center;
+}
+.blocSlider {
+}
+.blocCanal {
+    display: flex;
+    padding: 5px;
+}
+.blocCanal span {
+	padding-right: 5px;
+}
+img, input[type=image] {
+	/*width: 80%;*/
+}
+.relayswitch {
+    margin-top: -5px;
+}
+.blocRampe input[type="range"] {
+	width: 100%;
+}
+#header {
+	/*font-size: 1.1em;*/
+    background-color: rgb(172, 191, 130);
+    text-align: center;
+    color: black;	
+    min-height: 35px;
+    position: relative;    
+}
+#parameters, #home {
+    width: 20px;
+}
+.blocParamImg {
+    width: 40px;
+    /*height: 60px;*/
+    float: left;
+    clear: both;
+}
+.blocParamTxt {
+    width: 145px;
+    float: left;
+    padding-top: 5px;
+}
+#blocAllParam .blocSlider {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#atten { 
+    clear: both; 
+}
+div#titre {
+}
+div#infos {
+    margin-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 150px;
+    display: block;
+    background-color: #54a3a3;
+    padding: 3px;
+    text-align: center;
+    font-size: 1.2em;
+}
+div#menu {
+    position: absolute;
+    top: 5px;
+    right: 5px;    
+}
+.blocParamImg img {
+    width: 30px;
+}
+.collapse{
+  /*font-size: 31px;*/
+  display:block;
+}
+.collapse + input{
+  display:none;
+}
+.collapse + input + *{
+  display:none;
+}
+.collapse+ input:checked + *{
+  display:block;
+}
+#save {
+    width: 20px;
+}
+.titreBac{
+    font-size: 1.2em;
+}
+#outputText5, #outputText6, #outputText7, #outputText8, 
+#outputText9, #outputText10, #outputText12, #outputText13,
+#outputText18, #outputText19, #outputText20, #outputText21,
+#decant_min,#decant_max,#osmolation,#osmosee
+{
+    display: none;
+}
+#temp1,#temp2,#temp3,#temp4 {
+    font-size: 1.8em;
+    /*margin-top: 15px;
+    float: right;
+    margin-right: 25%; */
+}
+.img_niveau {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;    
+}

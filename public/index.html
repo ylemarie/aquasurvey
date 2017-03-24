@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+	<title>Aqua Survey</title>
+	<meta name="viewport" content="width=400" />
+	
+	<script src="socket.io/socket.io.js"></script>
+	<link rel="stylesheet" href="slider.css">
+	<link rel="stylesheet" href="yle.css">
+	<style>
+	body {
+		color: white;
+	}
+	</style>
+
+  </head>
+  <body>
+  	<div id="header">
+    	<div id='titre'>Aqua Survey</div>
+    	<div id="menu">
+    		<a href="parameters.html"><img id="parameters" src="parameters.png"></a>
+    	</div>
+    </div>
+	<script type="text/javascript">		
+		var socket = io.connect();
+		var DEBUG = 1;	//Debug
+
+		function socketInfos() {
+			socket.on('aquasurvey', function (data) {				
+				if (DEBUG) console.log(data);
+
+				document.getElementById( "hour" ).innerHTML = data.infos.hour;
+				//document.getElementById( "status" ).innerHTML = data.infos.status;
+				//document.getElementById( "problem" ).innerHTML = data.infos.problem;
+
+		        if (data.infos.status != "0") {
+		            document.getElementById( "status" ).innerHTML = data.infos.problem;
+		            document.getElementById( "infos" ).style.backgroundColor = "red";
+		            document.getElementById( "infos" ).style.width = "100%";
+		        } else {
+		            document.getElementById( "status" ).innerHTML = "all OK";
+		            document.getElementById( "infos" ).style.backgroundColor = "green";
+		        }
+
+				document.getElementById( "temp1" ).innerHTML = data.infos.temp1.value + "°";
+				if (data.infos.temp1.status == 0) document.getElementById( "temp1_img" ).src = "temp-ok.png";
+				else document.getElementById( "temp1_img" ).src = "temp-ko.png";
+
+				document.getElementById( "temp2" ).innerHTML = data.infos.temp2.value + "°";
+				if (data.infos.temp2.status == 0) document.getElementById( "temp2_img" ).src = "temp-ok.png";
+				else document.getElementById( "temp2_img" ).src = "temp-ko.png";
+
+				document.getElementById( "temp3" ).innerHTML = data.infos.temp3.value + "°";
+				if (data.infos.temp3.status == 0) document.getElementById( "temp3_img" ).src = "temp-ok.png";
+				else document.getElementById( "temp3_img" ).src = "temp-ko.png";
+
+
+				document.getElementById( "temp4" ).innerHTML = data.infos.temp4.value + "°";
+				if (data.infos.temp4.status == 0) document.getElementById( "temp4_img" ).src = "temp-ok.png";
+				else document.getElementById( "temp4_img" ).src = "temp-ko.png";
+
+				document.getElementById( "decant_min" ).innerHTML = data.infos.decant_min.value;
+				if (data.infos.decant_min.value == 1) document.getElementById( "decant_min_img" ).src = "level-ok.png";
+				else document.getElementById( "decant_min_img" ).src = "level-ko.png";
+
+				document.getElementById( "decant_max" ).innerHTML = data.infos.decant_max.value;
+				if (data.infos.decant_max.value == 1) document.getElementById( "decant_max_img" ).src = "level-ok.png";
+				else document.getElementById( "decant_max_img" ).src = "level-ko.png";
+
+				document.getElementById( "osmolation" ).innerHTML = data.infos.osmolation.value;
+				if (data.infos.osmolation.value == 1) document.getElementById( "osmolation_img" ).src = "level-ok.png";
+				else document.getElementById( "osmolation_img" ).src = "level-ko.png";
+
+				document.getElementById( "osmosee" ).innerHTML = data.infos.osmosee.value;
+				if (data.infos.osmosee.value == 1) document.getElementById( "osmosee_img" ).src = "level-ok.png";
+				else document.getElementById( "osmosee_img" ).src = "level-ko.png";
+
+			});			
+		}
+
+		document.write('	\
+			<div id="infos">	\
+				<span id="hour">xxx</span><br/>	\
+				<span id="status">xxx</span>	\
+			</div>	\
+			<div class="blocTemp"> \
+				<span class="titreBac">T° eau bac</span>	\
+				<img id="temp1_img" class="img_niveau" src="temp-ok.png"/> \
+				<span id="temp1">xx</span> \
+			</div>	\
+			<div class="blocTemp"> \
+				<span class="titreBac">T° eau décant</span>	\
+				<img id="temp2_img" class="img_niveau" src="temp-ko.png"/> \
+				<span id="temp2">xx</span> \
+				</div>	\
+			<div class="blocTemp"> \
+				<span class="titreBac">T° air bac</span>	\
+				<img id="temp3_img" class="img_niveau" src="temp-ok.png"/> \
+				<span id="temp3">xx</span> \
+			</div>	\
+			<div class="blocTemp"> \
+				<span class="titreBac">T° air decant</span>	\
+				<img id="temp4_img" class="img_niveau" src="temp-ko.png"/> \
+				<span id="temp4">xx</span> \
+			</div>	\
+			<div class="blocTemp"> \
+				<span class="titreBac">Decant Min</span>	\
+				<img id="decant_min_img" class="img_niveau" src="level-ok.png"/> \
+				<span id="decant_min">xx</span> \
+			</div>	\
+			<div class="blocTemp"> \
+				<span class="titreBac">Decant Max</span>	\
+				<img id="decant_max_img" class="img_niveau" src="level-ko.png"/> \
+				<span id="decant_max">xx</span> \
+			</div>	\
+			<div class="blocTemp"> \
+				<span class="titreBac">Osmolation</span>	\
+				<img id="osmolation_img" class="img_niveau" src="level-ok.png"/> \
+				<span id="osmolation">xx</span> \
+			</div>	\
+			<div class="blocTemp"> \
+				<span class="titreBac">Osmosée</span>	\
+				<img id="osmosee_img" class="img_niveau" src="level-ko.png"/> \
+				<span id="osmosee">xx</span> \
+			</div>	\
+		');
+		socketInfos();		
+
+	</script>
+  </body>
+</html>
