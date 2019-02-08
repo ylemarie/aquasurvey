@@ -303,8 +303,8 @@ function manageWebInfos(socket) {
 	var decant_max_status = 0;
 	var osmolation_status = 0;
 	var osmosee_status = 0;
-	var ecumeur_min_status = 0;
-	var ecumeur_max_status = 0;
+	var ecumeur_min_status = 1;
+	var ecumeur_max_status = 1;
 
 	if (decant_min_value == 1) { decant_min_status = 0;}
 	else {
@@ -330,15 +330,15 @@ function manageWebInfos(socket) {
 		problem[status] = "Osmosée niveau mini";
 		status++;
 	}
-	if (ecumeur_min_value == 1) { ecumeur_min_status = 0;}
+	if (ecumeur_min_value == 0) { ecumeur_min_status = 1;}
 	else {
-		ecumeur_min_status = 1;
+		ecumeur_min_status = 0;
 		problem[status] = "Ecumeur niveau mini";
-		status++;
+		//pas grave status++;
 	}
-	if (ecumeur_max_value == 1) { ecumeur_max_status = 0;}
+	if (ecumeur_max_value == 0) { ecumeur_max_status = 1;}
 	else {
-		ecumeur_max_status = 1;
+		ecumeur_max_status = 0;
 		problem[status] = "Ecumeur niveau maxi";
 		status++;
 	}
