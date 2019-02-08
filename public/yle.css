@@ -104,7 +104,7 @@ div#menu {
 #outputText5, #outputText6, #outputText7, #outputText8, 
 #outputText9, #outputText10, #outputText12, #outputText13,
 #outputText18, #outputText19, #outputText20, #outputText21,
-#decant_min,#decant_max,#osmolation,#osmosee
+#decant_min,#decant_max,#osmolation,#osmosee,#ecumeur_min,#ecumeur_max
 {
     display: none;
 }

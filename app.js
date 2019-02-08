@@ -30,21 +30,23 @@ var SENSOR_EAU_DEC = getParam('SENSOR_EAU_DEC');		// param06: Adresse Sonde eau 
 var SENSOR_AIR_BAC = getParam('SENSOR_AIR_BAC');		// param07: Adresse Sonde air bac
 var SENSOR_AIR_DEC = getParam('SENSOR_AIR_DEC');		// param08: Adresse Sonde air decant
 
-var EMAIL_DEST = getParam('EMAIL_DEST');				// param09: Email alerte destinataire
-var EMAIL_SERV = getParam('EMAIL_SERV');				// param10: smtp server
-var EMAIL_SEND = getParam('EMAIL_SEND');				// param11: Temps entre 2 mails en minutes
-var EMAIL_USER = getParam('EMAIL_USER');				// param12: smtp server user
-var EMAIL_PASS = getParam('EMAIL_PASS');				// param13: smtp server pass
+var EMAIL_DEST = getParam('EMAIL_DEST');			// param09: Email alerte destinataire
+var EMAIL_SERV = getParam('EMAIL_SERV');			// param10: smtp server
+var EMAIL_SEND = getParam('EMAIL_SEND');			// param11: Temps entre 2 mails en minutes
+var EMAIL_USER = getParam('EMAIL_USER');			// param12: smtp server user
+var EMAIL_PASS = getParam('EMAIL_PASS');			// param13: smtp server pass
 
 var CHECK_PERIOD = getParam('CHECK_PERIOD');			// param14: Check period in seconds
-var SERVER_PORT  = getParam('SERVER_PORT');				// param15: Http port
-var DEBUG 		 = getParam('DEBUG');					// param16: debug mode
-var LOG 		 = getParam('LOG');						// param17: log mode
+var SERVER_PORT  = getParam('SERVER_PORT');			// param15: Http port
+var DEBUG 	 = getParam('DEBUG');				// param16: debug mode
+var LOG 	 = getParam('LOG');				// param17: log mode
 
-var GPIO_DECANT_MIN = getParam('GPIO_DECANT_MIN');		// param18: Gpio Float Switch Decan Min
-var GPIO_DECANT_MAX = getParam('GPIO_DECANT_MAX');		// param19: Gpio Float Switch Decan Max
-var GPIO_OSMOLATION = getParam('GPIO_OSMOLATION');		// param20: Gpio Float Switch Osmolation Min
-var GPIO_OSMOSEE 	= getParam('GPIO_OSMOSEE');			// param21: Gpio Float Switch Osmosee Min
+var GPIO_DECANT_MIN  = getParam('GPIO_DECANT_MIN');		// param18: Gpio Float Switch Decan Min
+var GPIO_DECANT_MAX  = getParam('GPIO_DECANT_MAX');		// param19: Gpio Float Switch Decan Max
+var GPIO_OSMOLATION  = getParam('GPIO_OSMOLATION');		// param20: Gpio Float Switch Osmolation Min
+var GPIO_OSMOSEE     = getParam('GPIO_OSMOSEE');		// param21: Gpio Float Switch Osmosee Min
+var GPIO_ECUMEUR_MIN = getParam('GPIO_ECUMEUR_MIN');		// param22: Gpio Induction Ecumeur Min
+var GPIO_ECUMEUR_MAX = getParam('GPIO_ECUMEUR_MAX');		// param23: Gpio Induction Ecumeur Max
 
 if (DEBUG) { 
 	console.log("Nbr parameters:"+parameters.length); 
@@ -78,10 +80,12 @@ var dateFormat = require('dateformat');				//https://github.com/felixge/node-dat
 
 /*** GPIO ***/
 var Gpio = require('onoff').Gpio; 					// Constructor function for Gpio objects. (need npm install rpio (?) & npm install onoff)
-var decant_min	= new Gpio(GPIO_DECANT_MIN, 'in', 'both');
-var decant_max	= new Gpio(GPIO_DECANT_MAX, 'in', 'both');
-var osmolation 	= new Gpio(GPIO_OSMOLATION, 'in', 'both');
-var osmosee 	= new Gpio(GPIO_OSMOSEE, 	'in', 'both');
+var decant_min	= new Gpio(GPIO_DECANT_MIN,  'in', 'both');
+var decant_max	= new Gpio(GPIO_DECANT_MAX,  'in', 'both');
+var osmolation 	= new Gpio(GPIO_OSMOLATION,  'in', 'both');
+var osmosee 	= new Gpio(GPIO_OSMOSEE,     'in', 'both');
+var ecumeur_min	= new Gpio(GPIO_ECUMEUR_MIN, 'in', 'both');
+var ecumeur_max	= new Gpio(GPIO_ECUMEUR_MAX, 'in', 'both');
 
 /*** TEMPERATURE ***/
 
@@ -148,10 +152,12 @@ function manageWebParametersSave(socket) {
 		setParam( "SENSOR_AIR_BAC", SENSOR_AIR_BAC );
 		setParam( "SENSOR_AIR_DEC", SENSOR_AIR_DEC );
 
-		setParam( "GPIO_DECANT_MIN", GPIO_DECANT_MIN );
-		setParam( "GPIO_DECANT_MAX", GPIO_DECANT_MAX );
-		setParam( "GPIO_OSMOLATION", GPIO_OSMOLATION );
-		setParam( "GPIO_OSMOSEE", 	 GPIO_OSMOSEE );
+		setParam( "GPIO_DECANT_MIN",  GPIO_DECANT_MIN );
+		setParam( "GPIO_DECANT_MAX",  GPIO_DECANT_MAX );
+		setParam( "GPIO_OSMOLATION",  GPIO_OSMOLATION );
+		setParam( "GPIO_OSMOSEE",     GPIO_OSMOSEE );
+		setParam( "GPIO_ECUMEUR_MIN", GPIO_ECUMEUR_MIN );
+		setParam( "GPIO_ECUMEUR_MAX", GPIO_ECUMEUR_MAX );
 
 		setParam( "EMAIL_DEST", EMAIL_DEST );
 		setParam( "EMAIL_SERV", EMAIL_SERV );
@@ -181,21 +187,23 @@ function manageWebParameters(socket, num) {
 		case 7  : paramValue = SENSOR_AIR_BAC;	break;
 		case 8  : paramValue = SENSOR_AIR_DEC;	break;
 
-		case 9  : paramValue = EMAIL_DEST;		break;
-		case 10 : paramValue = EMAIL_SERV;		break;
-		case 11 : paramValue = EMAIL_SEND;		break;
-		case 12 : paramValue = EMAIL_USER;		break;
-		case 13 : paramValue = EMAIL_PASS;		break;
+		case 9  : paramValue = EMAIL_DEST;	break;
+		case 10 : paramValue = EMAIL_SERV;	break;
+		case 11 : paramValue = EMAIL_SEND;	break;
+		case 12 : paramValue = EMAIL_USER;	break;
+		case 13 : paramValue = EMAIL_PASS;	break;
 
 		case 14 : paramValue = CHECK_PERIOD;	break;
-		case 15 : paramValue = SERVER_PORT;		break;
-		case 16 : paramValue = DEBUG;			break;
-		case 17 : paramValue = LOG;				break;
+		case 15 : paramValue = SERVER_PORT;	break;
+		case 16 : paramValue = DEBUG;		break;
+		case 17 : paramValue = LOG;		break;
 
-		case 18 : paramValue = GPIO_DECANT_MIN;	break;
-		case 19 : paramValue = GPIO_DECANT_MAX;	break;
-		case 20 : paramValue = GPIO_OSMOLATION;	break;
-		case 21 : paramValue = GPIO_OSMOSEE;	break;
+		case 18 : paramValue = GPIO_DECANT_MIN;	 break;
+		case 19 : paramValue = GPIO_DECANT_MAX;	 break;
+		case 20 : paramValue = GPIO_OSMOLATION;	 break;
+		case 21 : paramValue = GPIO_OSMOSEE;     break;
+		case 22 : paramValue = GPIO_ECUMEUR_MIN; break;
+		case 23 : paramValue = GPIO_ECUMEUR_MAX; break;
 
 	}
 	socket.on(pName, function(data) {
@@ -211,21 +219,23 @@ function manageWebParameters(socket, num) {
 			case 7  : SENSOR_AIR_BAC = paramValue;	break;
 			case 8  : SENSOR_AIR_DEC = paramValue;	break;
 
-			case 9  : EMAIL_DEST = paramValue;		break;
-			case 10 : EMAIL_SERV = paramValue;		break;
-			case 11 : EMAIL_SEND = paramValue;		break;
-			case 12 : EMAIL_USER = paramValue;		break;
-			case 13 : EMAIL_PASS = paramValue;		break;
+			case 9  : EMAIL_DEST = paramValue;	break;
+			case 10 : EMAIL_SERV = paramValue;	break;
+			case 11 : EMAIL_SEND = paramValue;	break;
+			case 12 : EMAIL_USER = paramValue;	break;
+			case 13 : EMAIL_PASS = paramValue;	break;
 
 			case 14 : CHECK_PERIOD = paramValue;	break;
-			case 15 : SERVER_PORT = paramValue;		break;
-			case 16 : DEBUG = paramValue;			break;
-			case 17 : LOG = paramValue;				break;
+			case 15 : SERVER_PORT = paramValue;	break;
+			case 16 : DEBUG = paramValue;		break;
+			case 17 : LOG = paramValue;		break;
 
-			case 18 : GPIO_DECANT_MIN = paramValue;	break;
-			case 19 : GPIO_DECANT_MAX = paramValue;	break;
-			case 20 : GPIO_OSMOLATION = paramValue;	break;
-			case 21 : GPIO_OSMOSEE = paramValue;	break;
+			case 18 : GPIO_DECANT_MIN = paramValue;  break;
+			case 19 : GPIO_DECANT_MAX = paramValue;	 break;
+			case 20 : GPIO_OSMOLATION = paramValue;	 break;
+			case 21 : GPIO_OSMOSEE = paramValue;	 break;
+			case 22 : GPIO_ECUMEUR_MIN = paramValue; break;
+			case 23 : GPIO_ECUMEUR_MAX = paramValue; break;
 		}		
         if (DEBUG) { console.log(num+'-webPram) param='+paramValue); }
         //setParam(pName, paramValue);
@@ -286,10 +296,15 @@ function manageWebInfos(socket) {
 	var decant_max_value = decant_max.readSync();
 	var osmolation_value = osmolation.readSync();
 	var osmosee_value = osmosee.readSync();
+	var ecumeur_min_value = ecumeur_min.readSync();
+	var ecumeur_max_value = ecumeur_max.readSync();
+
 	var decant_min_status = 0;
 	var decant_max_status = 0;
 	var osmolation_status = 0;
 	var osmosee_status = 0;
+	var ecumeur_min_status = 0;
+	var ecumeur_max_status = 0;
 
 	if (decant_min_value == 1) { decant_min_status = 0;}
 	else {
@@ -315,6 +330,18 @@ function manageWebInfos(socket) {
 		problem[status] = "Osmosée niveau mini";
 		status++;
 	}
+	if (ecumeur_min_value == 1) { ecumeur_min_status = 0;}
+	else {
+		ecumeur_min_status = 1;
+		problem[status] = "Ecumeur niveau mini";
+		status++;
+	}
+	if (ecumeur_max_value == 1) { ecumeur_max_status = 0;}
+	else {
+		ecumeur_max_status = 1;
+		problem[status] = "Ecumeur niveau maxi";
+		status++;
+	}
 
 	var infos_obj = {
 		hour: now_hour,
@@ -326,10 +353,12 @@ function manageWebInfos(socket) {
 		temp3: { value: temp3_value, status: temp3_status },
 		temp4: { value: temp4_value, status: temp4_status },
 
-		decant_min:	{ value: decant_min_value, status: decant_min_status },
-		decant_max:	{ value: decant_max_value, status: decant_max_status },
-		osmolation:	{ value: osmolation_value, status: osmolation_status },
-		osmosee:	{ value: osmosee_value,    status: osmosee_status }
+		decant_min:	{ value: decant_min_value,  status: decant_min_status },
+		decant_max:	{ value: decant_max_value,  status: decant_max_status },
+		osmolation:	{ value: osmolation_value,  status: osmolation_status },
+		osmosee:	{ value: osmosee_value,     status: osmosee_status },
+		ecumeur_min:	{ value: ecumeur_min_value, status: ecumeur_min_status },
+		ecumeur_max:	{ value: ecumeur_max_value, status: ecumeur_max_status }
 	}
 	socket.emit( 'aquasurvey', {infos:infos_obj} );
 

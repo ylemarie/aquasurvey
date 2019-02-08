@@ -75,6 +75,13 @@
 				if (data.infos.osmosee.value == 1) document.getElementById( "osmosee_img" ).src = "level-ok.png";
 				else document.getElementById( "osmosee_img" ).src = "level-ko.png";
 
+				document.getElementById( "ecumeur_min" ).innerHTML = data.infos.ecumeur_min.value;
+				if (data.infos.ecumeur_min.value == 1) document.getElementById( "ecumeur_min_img" ).src = "level-ok.png";
+				else document.getElementById( "ecumeur_min_img" ).src = "level-ko.png";
+
+				document.getElementById( "ecumeur_max" ).innerHTML = data.infos.ecumeur_max.value;
+				if (data.infos.ecumeur_max.value == 1) document.getElementById( "ecumeur_max_img" ).src = "level-ok.png";
+				else document.getElementById( "ecumeur_max_img" ).src = "level-ko.png";
 			});			
 		}
 
@@ -122,6 +129,16 @@
 				<span class="titreBac">Osmosée</span>	\
 				<img id="osmosee_img" class="img_niveau" src="level-ko.png"/> \
 				<span id="osmosee">xx</span> \
+			</div>	\
+			<div class="blocTemp"> \
+				<span class="titreBac">Ecumeur Min</span>	\
+				<img id="ecumeur_min_img" class="img_niveau" src="level-ok.png"/> \
+				<span id="ecumeur_min">xx</span> \
+			</div>	\
+			<div class="blocTemp"> \
+				<span class="titreBac">Ecumeur Max</span>	\
+				<img id="ecumeur_max_img" class="img_niveau" src="level-ko.png"/> \
+				<span id="ecumeur_max">xx</span> \
 			</div>	\
 		');
 		socketInfos();		
