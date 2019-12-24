@@ -120,7 +120,7 @@ div#menu {
     margin-left: auto;
     display: block;    
 }
-.cams {
+#cams {
     display: block;
     float: left;
     margin-top: 10px;
