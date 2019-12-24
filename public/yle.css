@@ -120,3 +120,8 @@ div#menu {
     margin-left: auto;
     display: block;    
 }
+.cams {
+    display: block;
+    float: left;
+    margin-top: 10px;
+}
