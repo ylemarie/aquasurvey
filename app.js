@@ -333,7 +333,7 @@ function manageWebInfos(socket) {
 	if (ecumeur_min_value == 0) { ecumeur_min_status = 1;}
 	else {
 		ecumeur_min_status = 0;
-		problem[status] = "Ecumeur niveau mini";
+		//pas grave problem[status] = "Ecumeur niveau mini";
 		//pas grave status++;
 	}
 	if (ecumeur_max_value == 0) { ecumeur_max_status = 1;}
