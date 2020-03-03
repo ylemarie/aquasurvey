@@ -1,14 +1,17 @@
+#tabmesure {
+   margin: 0 auto;
+}
 .blocRampe {
 	/*padding-bottom: 4%;*/
 }
 .blocNum {
-	float: left;
+    float: left;
     font-size: 1.5em;
 }
 .blocTemp, .blocRelay, .blocAtten {
 }
 .blocTemp span, .blocRelay span, .blocAtten span, .blocCanal span {
-	display: block;
+    display: block;
     text-align: center;
 }
 .blocSlider {
@@ -65,17 +68,22 @@ div#infos {
     margin-bottom: 5px;
     margin-right: auto;
     margin-left: auto;
-    width: 150px;
-    display: none;
+    width: 790px;
+    /*display: none;*/
     background-color: #54a3a3;
     padding: 3px;
     text-align: center;
-    font-size: 1.2em;
+    /*font-size: 1.2em;*/
 }
 div#menu {
     position: absolute;
     top: 5px;
     right: 5px;    
+}
+.mesures {
+    width: 790px;
+    margin: 0 auto;
+    display: flex;
 }
 .blocParamImg img {
     width: 30px;
@@ -97,7 +105,7 @@ div#menu {
     width: 20px;
 }
 .titreBac{
-    font-size: 1em;
+    font-size: 14px;
     float: left;
     margin-top: 5px;
     margin-left: 2px;
@@ -110,7 +118,7 @@ div#menu {
     display: none;
 }
 #temp1,#temp2,#temp3,#temp4 {
-    font-size: 1em;
+    font-size: 14px;
     padding-top: 5px;
     float: left;
     margin-left: 4px;
@@ -120,9 +128,10 @@ div#menu {
     width: 25px;
     display: block;
     float: left;
+    margin: 2px;
 }
 #cams {
-    display: block;
-    float: left;
     margin-top: 10px;
+    width: 800px;
+    text-align: center;
 }

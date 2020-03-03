@@ -90,56 +90,24 @@
 				<span id="hour">xxx</span><br/>	\
 				<span id="status">xxx</span>	\
 			</div>	\
-			<div class="blocTemp"> \
-				<img id="temp1_img" class="img_niveau" src="temp-ok.png"/> \
-				<span class="titreBac">Eau bac:</span>	\
-				<span id="temp1">xx</span> \
-			</div>	\
-			<div class="blocTemp"> \
-				<img id="temp2_img" class="img_niveau" src="temp-ko.png"/> \
-				<span class="titreBac">Eau décant:</span>	\
-				<span id="temp2">xx</span> \
-				</div>	\
-			<div class="blocTemp"> \
-				<img id="temp3_img" class="img_niveau" src="temp-ok.png"/> \
-				<span class="titreBac">Air bac:</span>	\
-				<span id="temp3">xx</span> \
-			</div>	\
-			<div class="blocTemp"> \
-				<img id="temp4_img" class="img_niveau" src="temp-ko.png"/> \
-				<span class="titreBac">Air décant:</span>	\
-				<span id="temp4">xx</span> \
-			</div>	\
-			<div class="blocTemp"> \
-				<img id="decant_min_img" class="img_niveau" src="level-ok.png"/> \
-				<span class="titreBac">Min décant</span>	\
-				<span id="decant_min">xx</span> \
-			</div>	\
-			<div class="blocTemp"> \
-				<img id="decant_max_img" class="img_niveau" src="level-ko.png"/> \
-				<span class="titreBac">Max décant</span>	\
-				<span id="decant_max">xx</span> \
-			</div>	\
-			<div class="blocTemp"> \
-				<img id="osmolation_img" class="img_niveau" src="level-ok.png"/> \
-				<span class="titreBac">Osmolation</span>	\
-				<span id="osmolation">xx</span> \
-			</div>	\
-			<div class="blocTemp"> \
-				<img id="osmosee_img" class="img_niveau" src="level-ko.png"/> \
-				<span class="titreBac">Réserve osmosée</span>	\
-				<span id="osmosee">xx</span> \
-			</div>	\
-			<div class="blocTemp"> \
-				<img id="ecumeur_min_img" class="img_niveau" src="level-ok.png"/> \
-				<span class="titreBac">Min écumeur</span>	\
-				<span id="ecumeur_min">xx</span> \
-			</div>	\
-			<div class="blocTemp"> \
-				<img id="ecumeur_max_img" class="img_niveau" src="level-ko.png"/> \
-				<span class="titreBac">Max écumeur</span>	\
-				<span id="ecumeur_max">xx</span> \
-			</div>	\
+                        <div class="mesures"> \
+                            <table id="tabmesure"> \
+                            <tr> \
+                                <td><div class="blocTemp"><img id="temp1_img" class="img_niveau" src="temp-ok.png"/><span class="titreBac">Eau bac:</span><span id="temp1">xx</span></div></td> \
+                                <td><div class="blocTemp"><img id="temp2_img" class="img_niveau" src="temp-ko.png"/><span class="titreBac">Eau décant:</span><span id="temp2">xx</span></div></td> \
+                                <td><div class="blocTemp"><img id="decant_min_img" class="img_niveau" src="level-ok.png"/><span class="titreBac">Min décant</span><span id="decant_min">xx</span></div></td> \
+                                <td><div class="blocTemp"><img id="osmolation_img" class="img_niveau" src="level-ok.png"/><span class="titreBac">Osmolation</span><span id="osmolation">xx</span></div></td> \
+                                <td><div class="blocTemp"><img id="ecumeur_min_img" class="img_niveau" src="level-ok.png"/><span class="titreBac">Min écumeur</span><span id="ecumeur_min">xx</span></div></td> \
+                            </tr> \
+                            <tr> \
+                                <td><div class="blocTemp"><img id="temp3_img" class="img_niveau" src="temp-ok.png"/><span class="titreBac">Air bac:</span><span id="temp3">xx</span></div></td> \
+                                <td><div class="blocTemp"><img id="temp4_img" class="img_niveau" src="temp-ko.png"/><span class="titreBac">Air décant:</span><span id="temp4">xx</span></div></td> \
+                                <td><div class="blocTemp"><img id="decant_max_img" class="img_niveau" src="level-ko.png"/><span class="titreBac">Max décant</span><span id="decant_max">xx</span></div></td> \
+                                <td><div class="blocTemp"><img id="osmosee_img" class="img_niveau" src="level-ko.png"/><span class="titreBac">Réserve osmosée</span><span id="osmosee">xx</span></div></td> \
+                                <td><div class="blocTemp"><img id="ecumeur_max_img" class="img_niveau" src="level-ko.png"/><span class="titreBac">Max écumeur</span><span id="ecumeur_max">xx</span></div></td> \
+                            </tr> \
+                            </table> \
+                        </div> \
 		');
 		socketInfos();		
 
